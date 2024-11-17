@@ -1,5 +1,5 @@
 import torch
-from utils import get_device
+from bert4rec_on_taobao.src.utils import get_device
 import numpy as np
 from   tqdm import tqdm 
 from torch.utils.data import DataLoader
