@@ -9,7 +9,7 @@ import random
 from tqdm import tqdm
 
 class TaoBaoDataset(Dataset):
-    def __init__(self, data_dir, max_len=15,n_rows=80000000 split='train', test_ratio=0.2, random_seed=42, mask_prob=0.15):
+    def __init__(self, data_dir, max_len=15,n_rows=80000000, split='train', test_ratio=0.2, random_seed=42, mask_prob=0.15):
         self.data_dir = data_dir
         self.n_rows=n_rows
         self.max_len = max_len
