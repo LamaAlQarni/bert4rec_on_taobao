@@ -1,12 +1,12 @@
 import torch
 from torch.utils.data import DataLoader
-from .. import BERT4Rec
+from bert4rec_on_taobao.model.bert4rec import BERT4Rec
 import torch.optim as optim
 import torch.nn as nn
 import os
-from utils import get_device
+from bert4rec_on_taobao.src.utils import get_device
 from tqdm import tqdm
-from evaluate import calculate_metrics_batch
+from bert4rec_on_taobao.src.evaluate import calculate_metrics_batch
 import torch.optim as optim
 import time
 import torch.nn.functional as F
