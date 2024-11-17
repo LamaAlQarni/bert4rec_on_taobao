@@ -1,6 +1,6 @@
 import torch
 from torch.utils.data import DataLoader
-from model.bert4rec import BERT4Rec
+from .model.bert4rec import BERT4Rec
 import torch.optim as optim
 import torch.nn as nn
 import os
