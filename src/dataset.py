@@ -29,25 +29,29 @@ class TaoBaoDataset(Dataset):
     def process_and_save_data(self):
         taobao_file= os.path.join(self.data_dir, 'UserBehavior.csv')
         column_names = ['user_id', 'item_id', 'category_id', 'behavior_type', 'timestamp']
+        print('Reading Data: ',end='')
         # 80M was the highest number of row that can be loaded
         self.df=pd.read_csv(taobao_file,nrows=self.n_rows,header=None,names=column_names)
         self.df=self.df[self.df['behavior_type']=='buy']
-        print('Reading Data: Done!')
+        print('Done!')
+        print('Mapping items to index: ',end='')
         self.item_id_to_idx={id: idx + 1 for idx, id in enumerate(self.df['item_id'].unique())}
         self.df['item_id'] = self.df['item_id'].map(self.item_id_to_idx)
-        print('Mapping items to index: Done!')
+        print('Done!')
         self.num_items=len(self.item_id_to_idx) + 1 # +1 for padding
         self.mask_token=self.num_items + 1 # Last index is for the mask token
 
+        print('Build User Sequence: ',end='')
         # Build the user interaction sequence
         self.df=self.df.sort_values(['user_id', 'timestamp'])
         user_sequences=self.df.groupby('user_id').apply(
             lambda x: x.sort_values('timestamp')['item_id'].tolist()).to_dict()
-        print('Build User Sequence: Done!')
+        print('Done!')
 
+        print('Calculate item popularity: ',end='')
         # Calculating item popularity (for negative sampling) 
         self.item_popularity = self.df['item_id'].value_counts().to_dict()
-        print('Calculate item popularity: Done!')
+        print('Done!')
 
         # Divide the data into train\val\test
         train_sequences = []
