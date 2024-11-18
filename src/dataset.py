@@ -9,9 +9,8 @@ import random
 from tqdm import tqdm
 
 class TaoBaoDataset(Dataset):
-    def __init__(self, data_dir, max_len=15,n_rows=80000000, split='train', test_ratio=0.2, random_seed=42, mask_prob=0.15):
+    def __init__(self, data_dir, max_len=15, split='train', test_ratio=0.2, random_seed=42, mask_prob=0.15):
         self.data_dir = data_dir
-        self.n_rows=n_rows
         self.max_len = max_len
         self.split = split
         self.test_ratio = test_ratio
@@ -31,7 +30,7 @@ class TaoBaoDataset(Dataset):
         column_names = ['user_id', 'item_id', 'category_id', 'behavior_type', 'timestamp']
         print('Reading Data: ',end='')
         # 80M was the highest number of row that can be loaded
-        self.df=pd.read_csv(taobao_file,nrows=self.n_rows,header=None,names=column_names)
+        self.df=pd.read_csv(taobao_file,header=None,names=column_names)
         self.df=self.df[self.df['behavior_type']=='buy']
         print('Done!')
         print('Mapping items to index: ',end='')
