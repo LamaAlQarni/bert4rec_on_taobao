@@ -27,7 +27,7 @@ class TaoBaoDataset(Dataset):
         self.rng = random.Random(self.random_seed)
 
     def process_and_save_data(self):
-        taobao_file= os.path.join(self.data_dir, 'UserBehavior.csv')
+        taobao_file= os.path.join(self.data_dir, 'taobao_df.csv')
         column_names = ['user_id', 'item_id', 'category_id', 'behavior_type', 'timestamp']
         print('Reading Data: ',end='')
         # 80M was the highest number of row that can be loaded
