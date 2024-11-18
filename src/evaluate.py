@@ -3,7 +3,7 @@ from bert4rec_on_taobao.src.utils import get_device
 import numpy as np
 from   tqdm import tqdm 
 from torch.utils.data import DataLoader
-def calculate_metrics_batch(model, test_dataset, batch_size=128, k_values=[1, 5, 10],device="cpu"):
+def calculate_metrics_batch(model, test_dataset, batch_size=128, k_values=[1, 5, 10,50,100],device="cpu"):
     model.eval()
     hrs = {k: [] for k in k_values}
     ndcgs = {k: [] for k in k_values}
