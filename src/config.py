@@ -17,6 +17,6 @@ class Config:
     num_epochs = 30
     eval_step = 1000
     patience = 5
-    k_values = [1, 5, 10, 50, 100]
+    k_values = [1, 5, 10]
 
 config = Config()
