@@ -47,7 +47,7 @@ def train(model, train_dataset, test_dataset, device,
     global_step = 0
     
     # Save initial model
-    torch.save(model.state_dict(), 'model/initial_model.pth')
+    torch.save(model.state_dict(), '../model/initial_model.pth')
     
     for epoch in range(num_epochs):
         model.train()
@@ -83,7 +83,7 @@ def train(model, train_dataset, test_dataset, device,
                     best_hr = hrs[k_values[0]]
                     best_epoch = epoch
                     patience_counter = 0
-                    torch.save(model.state_dict(), 'model/best_model.pth')
+                    torch.save(model.state_dict(), '../model/best_model.pth')
                     print("New best model saved!")
                 else:
                     patience_counter += 1
@@ -106,10 +106,10 @@ def train(model, train_dataset, test_dataset, device,
     
     # Load best model if exists, otherwise keep the current model
     if os.path.exists('best_model.pth'):
-        model.load_state_dict(torch.load('model/best_model.pth'))
+        model.load_state_dict(torch.load('../model/best_model.pth'))
         print("Loaded the best model.")
-    elif os.path.exists('model/initial_model.pth'):
-        model.load_state_dict(torch.load('model/initial_model.pth'))
+    elif os.path.exists('../model/initial_model.pth'):
+        model.load_state_dict(torch.load('../model/initial_model.pth'))
         print("No improvement during training. Loaded the initial model.")
     else:
         print("No saved model found. Returning the current model state.")
