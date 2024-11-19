@@ -105,7 +105,7 @@ def train(model, train_dataset, test_dataset, device,
     print(f"Training completed. Best HR@{k_values[0]}: {best_hr:.4f} at epoch {best_epoch+1}")
     
     # Load best model if exists, otherwise keep the current model
-    if os.path.exists('best_model.pth'):
+    if os.path.exists('bert4rec_on_taobao/model/best_model.pth'):
         model.load_state_dict(torch.load('bert4rec_on_taobao/model/best_model.pth'))
         print("Loaded the best model.")
     elif os.path.exists('bert4rec_on_taobao/model/initial_model.pth'):
