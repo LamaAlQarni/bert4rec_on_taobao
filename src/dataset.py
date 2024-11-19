@@ -31,7 +31,6 @@ class TaoBaoDataset(Dataset):
         print('Reading Data: ',end='')
         # 80M was the highest number of row that can be loaded
         self.df=pd.read_csv(taobao_file,header=None,names=column_names)
-        self.df=self.df[self.df['behavior_type']=='buy']
         print('Done!')
         print('Mapping items to index: ',end='')
         self.item_id_to_idx={id: idx + 1 for idx, id in enumerate(self.df['item_id'].unique())}
